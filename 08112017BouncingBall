@@ -1,0 +1,126 @@
+#include "ofApp.h"
+int radius = 10;
+float friction;
+ofVec2f circlePosition1;
+ofVec2f circlePosition2;
+ofVec2f circleVelocity1;
+ofVec2f circleVelocity2;
+ofVec2f circleDirection1;
+ofVec2f circleDirection2;
+//--------------------------------------------------------------
+void ofApp::setup(){
+    ofSetBackgroundColor(0, 0, 0);
+    ofSetColor(255,255,255);
+    circlePosition1.set(ofGetWidth()/2, ofGetHeight()/2);
+    circleDirection1.set(1,1);
+    circleVelocity1.set(2.8,2.8);
+    circlePosition2.set(ofGetWidth()/2, ofGetHeight()/2);
+    circleDirection2.set(1,1);
+    circleVelocity2.set(2,2.8);
+
+}
+
+//--------------------------------------------------------------
+void ofApp::update(){
+    
+    circlePosition1.x = circlePosition1.x +(circleVelocity1.x * circleDirection1.x);
+    circlePosition1.y = circlePosition1.y +(circleVelocity1.y * circleDirection1.y);
+    circlePosition2.x = circlePosition2.x +(circleVelocity2.x * circleDirection2.x);
+    circlePosition2.y = circlePosition2.y +(circleVelocity2.y * circleDirection2.y);
+    
+    if(circlePosition1.x<radius || circlePosition1.x>ofGetWidth()-radius){
+        circleDirection1.x *= -1;
+//      ofDrawCircle(circlePosition1.x*0.5,circlePosition1.y+56,radius);
+
+        ofSetColor(0, 0, ofRandom(255));
+    }
+    if(circlePosition1.y<radius || circlePosition1.y>ofGetHeight()-radius){
+        circleDirection1.y *= -1;
+        ofSetColor(0, 0, ofRandom(255));
+    }
+    
+    if(circlePosition2.x<radius || circlePosition2.x>ofGetWidth()-radius){
+        circleDirection2.x *= -1;
+        ofSetColor(0, ofRandom(255), ofRandom(255));
+    }
+    if(circlePosition2.y<radius || circlePosition2.y>ofGetHeight()-radius){
+        circleDirection2.y *= -1;
+        ofSetColor(0, ofRandom(255), ofRandom(255));
+    }
+    
+
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+    ofSetBackgroundColor(0, 0, 0,20);
+    ofDrawCircle(circlePosition1.x,circlePosition1.y,radius);
+    ofDrawCircle(circlePosition2.x,(circlePosition2.y*0.2)+30,radius);
+    
+    
+    ofDrawLine(circlePosition1.x, circlePosition1.y, circlePosition2.x,(circlePosition2.y*0.2)+30);
+    
+}
+
+//--------------------------------------------------------------
+void ofApp::keyPressed(int key){
+    radius = circlePosition2.x/30;
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key){
+    radius = 5;
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseMoved(int x, int y ){
+    ofSetBackgroundColor(0,ofGetMouseY(),ofGetMouseX());
+    
+    
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseDragged(int x, int y, int button){
+//  radius.push_back( ofRandom(10, 20) );
+}
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button){
+//    ofDrawCircle((circlePosition.x*ofRandom(0.6))+40,(circlePosition.y*ofRandom(0.7))+30,radius);
+//    ofDrawCircle(circlePosition.x+40,circlePosition.y+30,radius);
+    ofSetColor(0, 0, ofRandom(255));
+
+
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseEntered(int x, int y){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseExited(int x, int y){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::windowResized(int w, int h){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::gotMessage(ofMessage msg){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
