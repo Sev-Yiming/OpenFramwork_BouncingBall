@@ -1,0 +1,91 @@
+#include "ofApp.h"
+int radius = 50;
+float friction;
+ofVec2f circlePosition;
+ofVec2f circleVelocity;
+//--------------------------------------------------------------
+void ofApp::setup(){
+    ofSetBackgroundColor(0, 0, 0);
+    ofSetColor(255,255,255);
+    circlePosition.set(ofGetWidth()/2, ofGetHeight()/2);
+    circleVelocity.set(0, 0);
+    friction = .90f;
+
+}
+
+//--------------------------------------------------------------
+void ofApp::update(){
+    circlePosition += circleVelocity;
+    circleVelocity *= friction;
+    
+    if(circlePosition.x<0 || circlePosition.x>ofGetWidth()){
+        circleVelocity.x *= -1;
+    }
+    if(circlePosition.y<0 || circlePosition.x>ofGetHeight()){
+        circleVelocity.y *= -1;
+    }
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+    ofSetBackgroundColor(0, 0, 0,20);
+    ofDrawCircle(circlePosition.x,circlePosition.y,radius);
+    
+}
+
+//--------------------------------------------------------------
+void ofApp::keyPressed(int key){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseMoved(int x, int y ){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseDragged(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button){
+    circleVelocity.x += 5 - ofRandom(10);
+    circleVelocity.y += 5 - ofRandom(10);
+    ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255));
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseEntered(int x, int y){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseExited(int x, int y){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::windowResized(int w, int h){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::gotMessage(ofMessage msg){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
